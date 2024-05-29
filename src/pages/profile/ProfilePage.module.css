@@ -1,0 +1,730 @@
+/* ProfilePage.module.css */
+.container {
+  font-size: 1.6rem;
+  padding: 2.4rem 6.4rem;
+  background-color: #ecf1f7;
+  border-radius: 0.8rem;
+  min-height: 100svh;
+  @media (max-width: 64rem) {
+    padding: 2.4rem;
+  }
+  @media (max-width: 56rem) {
+    padding: 2.4rem;
+  }
+  @media (max-width: 40rem) {
+    padding: 1.4rem;
+  }
+}
+
+.profileContainer {
+  font-size: 1.6rem;
+  border-radius: 0.8rem;
+  min-height: 100svh;
+}
+
+/*  */
+.memberPageHeader .profileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.1rem solid #ddd;
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+}
+
+/*  */
+.profileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.1rem solid #ddd;
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+}
+
+.profileHeader h2 {
+  margin: 0;
+  color: #333;
+}
+
+.memberPageHeader .profileHeader h2 {
+  margin: 0;
+  color: #333;
+}
+
+/*  */
+.profileColumns {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-content: center;
+  gap: 2.4rem;
+  align-items: center;
+  margin-bottom: 6.4rem;
+  @media screen and (max-width: 40rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.profileColumn h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.profileInformation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  gap: 1.2rem;
+  padding: 3rem;
+  background-color: #e5e9ef;
+  border-radius: 0.8rem;
+  box-shadow: 1rem 2rem 0 rgba(51, 51, 51, 0.1);
+}
+
+.profileImgAndStastus {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+}
+
+.profileImg img {
+  object-fit: contain;
+  width: 10rem;
+  height: auto;
+  border-radius: 50%;
+}
+
+.profileInformation .editProfile {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  font-size: 1.4rem;
+  top: 2rem;
+  right: 2rem;
+  color: var(--color-brand--4);
+  border: 0.1rem solid var(--color-brand--4);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.profileInformation .editProfile:hover {
+  background-color: var(--color-brand--4);
+  color: #fff;
+}
+
+.profileInformation label {
+  display: flex;
+  gap: 1rem;
+  font-weight: bold;
+}
+
+.profileInformation p {
+  margin: 0.5rem 0;
+  color: #333;
+}
+
+.profileInformation label i {
+  margin-right: 1rem;
+  color: var(--color-brand--4);
+  padding-right: 1rem;
+}
+
+.profileInformation .details div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.profileInformation .details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.navigation {
+  background-color: #bad2ec;
+  border-radius: 8px;
+  padding: 10px;
+  color: #fff;
+}
+
+.navigation ul {
+  padding-top: 1rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.navigation ul li a {
+  text-decoration: none;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  color: #5f5f5f;
+}
+
+.navigation ul li a i {
+  font-size: 1.2rem;
+}
+
+/*  */
+.activitySection {
+  display: flex;
+  flex-direction: column;
+  gap: 6.4rem;
+  border-radius: 1rem;
+}
+
+.activitySection h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.activityItem {
+  margin-bottom: 1.2rem;
+}
+
+.activityItem span {
+  color: #777;
+}
+
+.recentActivity {
+  border-radius: 1rem;
+  padding: 1.8rem;
+  border: 0.01rem solid #cbd0d5;
+}
+
+.recentActivity.changeStatus {
+  background-color: #a1cbf7;
+  border-radius: 1rem;
+  padding: 1.6rem;
+}
+
+/*  */
+.eventsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 6.4rem;
+}
+
+.myEvents {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  border-radius: 1rem;
+}
+.myEvents .eventHeader {
+  background-color: #e5e9ef;
+  border-bottom: 1rem solid var(--color-brand--4);
+  padding: 2.4rem 2.4rem 0;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  color: var(--color-brand--4);
+}
+
+.myEvents .eventHeader div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.myEvents .eventHeader span {
+  padding-top: 2.4rem;
+  font-size: 1.8rem;
+  color: var(--color-brand--4);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.events {
+  padding-top: 1.6rem;
+  border-radius: 0.5rem;
+}
+
+.events span {
+  color: var(--color-brand--4);
+}
+
+.eventStats {
+  padding: 0 0 0 1.4rem;
+}
+
+.myEventsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+  padding-left: 0;
+  padding-top: 0.5rem;
+}
+
+/* .eventListItem, */
+.itemHeader {
+  padding: 1rem 2.4rem;
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 1.5fr repeat(5, 1fr);
+  gap: 1rem;
+  background-color: #cbd0d5;
+}
+
+.itemRow {
+  background-color: #f9fafb;
+  font-size: 1.4rem;
+  padding: 1rem 2.4rem;
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 1.5fr repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.eventAction {
+  color: var(--color-brand--4);
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 1.4rem;
+}
+
+.eventAction i:hover {
+  font-size: 2.4rem;
+}
+
+.eventShowing {
+  padding: 1rem;
+  background-color: #e2e2e2;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1.2rem;
+}
+
+/*  */
+.communityEvents {
+  background-color: #e1eaf3;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  padding-top: 2.4rem;
+  border-top: 1rem solid var(--color-brand--4);
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.communityEvents h2 {
+  color: var(--color-brand--4);
+  font-weight: 600;
+}
+
+.communityEvents h2,
+.communityEvents p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upcoming .upcomingHeader {
+  color: #fff;
+  border-radius: 0.5rem;
+  background-color: var(--color-brand--4);
+  padding: 1.4rem;
+}
+
+.upcoming {
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1.4rem;
+}
+
+.sababuEvents {
+  border-radius: 1rem;
+}
+
+.sababuEvents h2 {
+  color: var(--color-brand--4);
+  font-weight: 600;
+}
+
+.announcement {
+  background-image: linear-gradient(
+    to right,
+    var(--color-bg--4) 0%,
+    var(--color-bg--2) 19%,
+    var(--color-bg--3) 42%,
+    var(--color-bg--2) 79%,
+    var(--color-bg--4) 100%
+  );
+  color: inherit;
+  padding: 2.4rem;
+  text-align: center;
+  border-radius: 1rem;
+}
+
+.announcementDetails {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Main */
+.content {
+  height: 100dvh;
+  flex: 1; /* This makes the content fill the remaining space */
+  padding: 2.4rem;
+  overflow-y: scroll;
+}
+
+/* Edit Profile and Sign up */
+.editProfileModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+
+.editProfile.signupModal {
+  z-index: 1;
+  color: #fff;
+}
+
+.modalContent {
+  width: 75%;
+  height: 65rem;
+  background-color: #fff;
+  padding: 2.4rem;
+  border-radius: 0.8rem;
+  overflow-y: scroll;
+}
+
+.modalContent h3 {
+  margin-top: 0;
+  margin-bottom: 2.4rem;
+  border-radius: 0.5rem;
+}
+
+.modalContent form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalContent label {
+  margin-bottom: 0.6rem;
+}
+
+.modalContent input {
+  padding: 0.8rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.4rem;
+}
+
+.modalContent button {
+  color: #fff;
+  border: none;
+  border-radius: 0.4rem;
+  padding: 0.8rem 1.6rem;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modalContent button:hover {
+  background-color: #0056b3;
+}
+
+.twoEqualColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.twoUnequalColumns {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.2rem;
+}
+
+/* Event Modal */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eventModalContent {
+  max-width: 70rem;
+  width: 100%;
+  height: 80%;
+  overflow-y: scroll;
+  background-color: #fff;
+  position: relative;
+  padding: 2.4rem;
+  border-radius: 0.8rem;
+}
+
+.eventModalHeader {
+  margin-bottom: 2.4rem;
+}
+
+.modalCloseBtn {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+}
+
+.modalCloseBtn:hover {
+  color: #fff;
+  background-color: var(--color-brand--4);
+}
+
+/*  */
+.formControlRow div div label {
+  color: #777;
+}
+
+.formControlRow {
+  display: flex;
+  flex-direction: column;
+  gap: 3.6rem;
+}
+
+.twoColumn {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.4rem;
+  @media screen and (max-width: 40rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.selectedMemberDetails {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4.8rem;
+  @media (max-width: 55rem) {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.selectedDependentDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.selectedDependentDetails p {
+  padding-left: 0;
+}
+
+.dependentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.sectionCol div p {
+  display: grid;
+  grid-template-columns: 12rem 1.4fr;
+  align-items: center;
+}
+
+.sectionCol div p span {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #f5f5f5;
+  font-weight: 600;
+  height: 4.4rem;
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+}
+
+.sectionCol.dependent div p span {
+  font-weight: 600;
+}
+
+.street {
+  display: flex;
+  gap: 2.4rem;
+}
+
+.deleteMemberBtn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2.4rem;
+  gap: 2.4rem;
+}
+
+.btnColor {
+  background-color: var(--color-brand--4) !important;
+}
+
+/* Render Events */
+/* .secondEventTab {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.eventDate {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-left: 0.4rem solid var(--color-brand--4);
+  color: var(--color-brand--4);
+  font-size: 1.4rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+}
+
+.day {
+  font-size: 3.6rem;
+}
+
+.eventDetails {
+  padding: 0 2.4rem 2.4rem 0;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  align-items: center;
+}
+
+.eventDetails .tag {
+  font-size: 1.4rem;
+}
+
+.timeAndVenue {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.timeAndVenue span {
+  padding: 0;
+  font-size: 1.2rem;
+}
+
+.venue {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.venue .address {
+  font-size: 1.1rem;
+}
+
+.organizer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.organizer button {
+  color: #fff;
+  font-size: 1.2rem;
+  background-color: var(--color-brand--4);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.eventTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.eventContainer ul {
+  @media (max-width: 70rem) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 60rem) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 50rem) {
+    grid-template-columns: 1fr;
+  }
+  @media (max-width: 40rem) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 34rem) {
+    grid-template-columns: 1fr;
+    .day {
+      font-size: 2.4rem;
+    }
+  }
+}
+
+/* PAGINATION */
+/* .pageNumbers {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding-top: 2.4rem;
+}
+
+.pageNumbers li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 1.4rem;
+  cursor: pointer;
+}
+
+.pageNumbers li.active {
+  background-color: rgb(218, 218, 218);
+  border-radius: 1rem;
+}
+
+.pageNumbers li button {
+  background-color: transparent;
+  padding: 0.5rem 1.2rem;
+  border: none;
+
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.pageNumbers li button:hover {
+  border-radius: 2rem;
+  background-color: var(--color-bg--1);
+  color: #fff;
+}
+
+.pageNumbers li button:focus {
+  outline: none;
+}
+
+.loadmore {
+  padding: 1rem;
+  background-color: transparent;
+  color: inherit;
+  font-size: 1.2rem;
+  border: 1px solid var(--color-brand--1);
+  cursor: pointer;
+}  */

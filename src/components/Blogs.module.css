@@ -1,0 +1,17 @@
+.blogList {
+  display: flex;
+  flex-direction: column;
+  gap: 3.6rem;
+}
+
+.blogLayout {
+  padding-left: 0;
+  list-style: none;
+  gap: 2.4rem;
+}
+
+.blogHeader {
+  font-weight: 600;
+  font-size: 3.2rem;
+  color: var(--color-brand--3);
+}

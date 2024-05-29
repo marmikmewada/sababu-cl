@@ -1,0 +1,67 @@
+.eventMain {
+  background: linear-gradient(
+    110deg,
+    var(--color-bg--2) 75%,
+    var(--color-bg--3) 75%
+  );
+}
+
+.eventDesc {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 4.8rem;
+  justify-content: space-between;
+}
+
+/*  */
+/*  */
+/* AnnounceSection.css */
+.announceSection {
+  /* background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%); */
+  background-image: linear-gradient(
+    to right,
+    var(--color-bg--4) 0%,
+    var(--color-bg--2) 19%,
+    var(--color-bg--3) 42%,
+    var(--color-bg--2) 79%,
+    var(--color-bg--4) 100%
+  );
+  color: inherit;
+  padding: 2rem;
+  text-align: center;
+  margin-top: 9.6rem;
+}
+
+.announceContent {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.announceContent h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.announceContent p {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.announceConten a:link,
+.announceConten a:visited {
+  display: inline-block;
+  background-color: #fff;
+  color: #3498db;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.announceContent a:hover {
+  background-color: #3498db;
+  color: #fff;
+}

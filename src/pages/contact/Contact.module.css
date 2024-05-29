@@ -1,0 +1,61 @@
+.contacts {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.contactInfo {
+  width: 75%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.contactOptions {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.contactDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+}
+
+.contactDetails .address,
+.contactDetails .phone,
+.contactDetails .email {
+  display: flex;
+  gap: 2.4rem;
+  align-items: center;
+}
+
+.contactDetails .address div p,
+.contactDetails .phone div p,
+.contactDetails .email div p {
+  font-size: 1.8rem;
+  font-weight: 600;
+  padding: 0;
+  margin: 0;
+}
+
+.contactDetails .address div span,
+.contactDetails .phone div span,
+.contactDetails .email div span {
+  font-size: 1.4rem;
+}
+
+.contactDetails .address i:global(.fa-solid),
+.contactDetails .phone i:global(.fa-solid),
+.contactDetails .email i:global(.fa-regular) {
+  font-size: 3.2rem;
+  color: var(--color-brand--3);
+}
+
+.googleMap {
+  padding: 9.6rem 0;
+}
+
+@media only screen and (max-width: 960px) {
+  .contactOptions {
+    grid-template-columns: 1fr;
+  }
+}

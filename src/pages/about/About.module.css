@@ -1,0 +1,206 @@
+/*  */
+.aboutText {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.expanderBtn {
+  background-color: inherit;
+  border: none;
+  color: var(--color-brand--3);
+  cursor: pointer;
+}
+
+/*  */
+.missionVision {
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+}
+
+.mission,
+.vision,
+.impact {
+  height: 35rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.4rem;
+  padding: 2.4rem;
+  border-radius: 1rem;
+}
+
+.mission::after,
+.vision::after {
+  background-color: var(--color-transparent--1);
+  box-shadow: 0.5rem 0.5rem 0.1rem rgba(172, 172, 172, 0.1);
+  content: "";
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mission p,
+.vision p {
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.mission {
+  background-color: var(--color-bg--3);
+}
+
+.vision {
+  background-color: var(--color-bg--2);
+}
+.impact {
+  background-color: var(--color-transparent--1);
+}
+
+/*  */
+.aboutQuote {
+  position: relative;
+  height: 60vh;
+  color: var(--color-bg--2);
+}
+
+.aboutQuote::before {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-image: url("/images/sb-executive.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  --webkit-filter: blur(0.1rem);
+  filter: blur(0.1rem);
+}
+
+.blockquote {
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+  text-transform: capitalize;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--color-text--1);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  @media (max-width: 60rem) {
+    font-size: 2.4rem;
+  }
+}
+
+.blockquote p {
+  font-size: 1.4rem;
+}
+
+.sababuTeam {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sababuTeam ul {
+  padding-left: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2.4rem;
+  @media (max-width: 60rem) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media (max-width: 40rem) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 25rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.teamMember {
+  border-radius: 1rem;
+  background-color: var(--color-bg--2);
+  padding: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+}
+
+.memberImg img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.teamMemberBio {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2.4rem;
+}
+
+.teamMemberIcons {
+  display: flex;
+  flex-direction: row;
+  gap: 3.6rem;
+}
+
+.memberTitle {
+  font-size: 1.4rem;
+  color: var(--color-brand--3);
+  font-weight: 600;
+}
+
+.companyName {
+  font-size: 1.4rem;
+  font-style: italic;
+}
+
+.teamMemberIcons i:global(.fa-brands) {
+  font-size: 1.8rem;
+  color: var(--color-brand--1);
+}
+
+/*  */
+.volunteerPitch {
+  background-color: var(--color-bg--3);
+  padding: 6.4rem;
+  text-align: center;
+  color: var(--color-bg--1);
+  line-height: 1.6;
+  font-size: 2rem;
+  margin: 0 auto;
+}
+
+.footerSection {
+  padding-top: 6.4rem;
+}

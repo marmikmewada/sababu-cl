@@ -1,0 +1,36 @@
+import React, { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/home/Home';
+import About from './pages/about/About';
+import Services from './pages/services/Services';
+import Contact from './pages/contact/Contact';
+import Membership from './pages/membership/Membership';
+import Register from './pages/authentication/Register';
+import ProfilePage from './pages/profile/ProfilePage';
+import Login from './pages/authentication/Login';
+import useStore from './zustand/store'; // Adjust the import path as necessary
+
+function App() {
+  const { initializeStore } = useStore(); // Destructure initializeStore from useStore
+
+  useEffect(() => {
+    initializeStore(); // Run initializeStore on component mount
+  }, [initializeStore]);
+
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services/*" element={<Services />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/app/profile" element={<ProfilePage />} />
+        <Route path="/app/membership" element={<Membership />} />
+        <Route path="/app/users/register" element={<Register />} />
+        <Route path="/app/users/login" element={<Login />} />
+      </Routes>
+    </>
+  );
+}
+
+export default App;

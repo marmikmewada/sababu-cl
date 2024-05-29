@@ -1,0 +1,248 @@
+.calendarContainer {
+  position: relative;
+  width: 90%;
+  margin: 0 auto;
+  background-color: #eeeeee;
+  padding: 1.4rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1.2rem rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f700c5;
+  color: #fff;
+  padding: 1.4rem;
+  border-radius: 0.5rem;
+}
+
+.header div i {
+  cursor: pointer;
+}
+
+.days {
+  display: flex;
+  justify-content: space-between;
+  background-color: #ecf0f1;
+  padding: 1.6rem;
+  border-radius: 0.5rem;
+}
+
+.day {
+  flex: 1;
+  text-align: center;
+  font-weight: bold;
+  color: #555;
+}
+
+.week {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cell {
+  position: relative;
+  background-color: #fff;
+  height: 8rem;
+  flex: 1;
+  padding: 1.6rem;
+  border: 0.1rem solid #ddd;
+  cursor: pointer;
+}
+
+.cell.disabled {
+  background-color: #ecf0f1;
+}
+
+.cell span {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--color-brand--1);
+}
+
+.addEventModal {
+  position: absolute;
+  width: 35rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 4.8rem 2.4rem 1.2rem;
+  box-shadow: 0 1.2rem 2.4rem rgb(85, 85, 85, 0.2);
+}
+
+.addEventModal label {
+  margin-top: 0.5rem;
+}
+
+.add-event-modal input {
+  color: #555;
+}
+
+.addEventModal .addEventButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.addEventModal .addEventButtons button {
+  border: 0.1rem solid var(--color-bg--1);
+  margin-top: 1.8rem;
+  color: var(--color-text--1);
+  font-size: 1.4rem;
+  padding: 0.8rem;
+  background-color: var(--color-bg--1);
+  border-radius: 0.5rem;
+}
+
+.addEventModal .addEventButtons button:hover {
+  background-color: inherit;
+  color: var(--color-bg--1);
+}
+
+/*  */
+.today {
+  background-color: #f700c5; /* Light gray background for selected date */
+}
+
+.today span {
+  color: #fff;
+}
+
+/*  */
+.eventDetailsModal {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-30%);
+  background-color: #fcc3c3;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  padding: 1.6rem;
+  border-radius: 0.8rem;
+  max-width: 45rem;
+  z-index: 9999;
+}
+
+.eventDot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 65%;
+  height: 90%;
+  background-color: #d6e4fb; /* Blue dot color */
+  font-size: 1.2rem;
+  padding: 0.5rem;
+}
+
+.eventModal {
+  /* Styles for the event details modal */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/*  */
+/*  */
+/*  */
+/* Sababu Fund events styles */
+/* .sababuEvents {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6.4rem;
+} */
+
+/*  */
+/* .announcementContainer {
+  height: 60rem;
+  margin-bottom: 4.8rem;
+
+  background: linear-gradient(
+    90deg,
+    var(--color-bg--4) 0%,
+    var(--color-bg--2) 100%
+  );
+}
+
+.announcementHeading {
+  padding: 2.4rem 2.4rem 0;
+}
+
+.announcements {
+  background-color: rgb(255, 255, 255, 0.3);
+  height: 80%;
+  margin: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  padding: 4.6rem;
+}
+
+.announcementDetails {
+  background-color: #fff;
+  height: 50%;
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr;
+  padding: 4.8rem;
+}
+
+.announcementSubDetail img {
+  height: 40%;
+  width: 80%;
+}
+
+.announcementSubDetail {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.announcementSubDetail div span {
+  font-size: 1.3rem;
+}
+
+.announcementImg {
+  background-color: inherit;
+  height: 60%;
+} */
+
+/*  */
+/* .eventList {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.eventListItem {
+  background-color: var(--color-bg--3);
+  display: grid;
+  grid-template-columns: 2fr 5fr 1fr;
+  gap: 3.2rem;
+  align-items: center;
+  border-radius: 0.5rem;
+  padding: 2.4rem;
+}
+
+.listItemDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.eventImg img {
+  height: auto;
+  width: 100%;
+}
+
+.eventRSVP {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.2rem;
+} */

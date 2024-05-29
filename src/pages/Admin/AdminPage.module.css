@@ -1,0 +1,100 @@
+/* AdminDashboard.module.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.header {
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  background-color: var(--color-brand--41);
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.navbar {
+  background-color: var(--color-brand--4);
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+}
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2.4rem;
+}
+
+.navbar ul li {
+  display: inline;
+  padding: 0.4rem;
+  border: 0.1rem solid #fff;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+  color: #eaeaea;
+}
+
+.main {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.section {
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 300px;
+}
+
+.section h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 22px;
+  text-align: center;
+}
+
+.section ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.section ul li {
+  margin-bottom: 10px;
+}
+
+.section ul li a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.section ul li a:hover {
+  color: #333;
+}

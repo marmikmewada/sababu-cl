@@ -1,0 +1,225 @@
+.household {
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 78.8rem) {
+    font-size: 1.4rem;
+  }
+  @media (max-width: 40rem) {
+    th,
+    td {
+      font-size: 1.4rem;
+      border: 0.02rem solid #ddd;
+      padding: 0.5rem;
+      text-align: left;
+    }
+
+    .householdTables {
+      padding: 1.6rem;
+    }
+  }
+  @media (max-width: 30rem) {
+    th,
+    td {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+.householdHeader {
+  margin-bottom: 2.4rem;
+}
+
+/*  */
+.profileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.1rem solid #ddd;
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+}
+
+.profileHeader h2 {
+  margin: 0;
+}
+
+.houseCategories {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.householdTables {
+  padding: 2.4rem;
+  border-radius: 1rem;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+.categoryTable {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+/* ResponsiveTable.css */
+.contentResizeTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+}
+
+.contentResizeTable th,
+.contentResizeTable td {
+  border: 0.1rem solid #ddd;
+  padding: 0.8rem;
+  text-align: left;
+}
+
+/* Optional: Add some styling for better readability */
+.contentResizeTable th {
+  background-color: var(--color-brand--6);
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+.householdTableBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.8rem;
+}
+
+.householdTableBtn button {
+  border: none;
+  color: #878787;
+  background-color: transparent;
+  padding: 0.5rem;
+}
+
+/* Modal */
+.addMember {
+  position: relative;
+}
+
+/* Modal.css */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  max-width: 70rem;
+  width: 98%;
+  background-color: #fff;
+  position: relative;
+  margin: 0 auto;
+  border-radius: 1rem;
+}
+
+.closeBtnContainer {
+  position: absolute;
+  top: -2.2rem;
+  right: 0;
+}
+
+.modalCloseBtn {
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  /* border: 0.1rem solid var(--color-brand--4); */
+  border-radius: 0.5rem;
+}
+
+.modalCloseBtn:hover {
+  color: #fff;
+  background-color: var(--color-brand--4);
+}
+
+/* Form */
+.modalForm {
+  width: 100%;
+  padding: 1.2rem 2.4rem;
+}
+
+.inputControl {
+  width: 100%;
+}
+
+.inputControl.twoColumns {
+  display: grid;
+  grid-template-columns: 2.5fr 0.5fr;
+  gap: 2.4rem;
+}
+
+.inputControl.twoEqualColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4rem;
+}
+
+.inputControl.threeColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2.4rem;
+  /* width: 100%; */
+}
+
+.submitBtn {
+  padding: 1rem;
+  margin-bottom: 2.4rem;
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-brand--4);
+  color: #fff;
+  border-radius: 1rem;
+  font-weight: 600;
+}
+
+.submitBtn:hover {
+  background-color: var(--color-brand--1);
+}
+
+/* Add category */
+.addBtnContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 1.4rem;
+  padding-right: 1.4rem;
+}
+
+.addBtn {
+  background-color: #fff;
+  color: inherit;
+  padding: 0.6rem 1rem;
+  border: 0.01rem solid var(--color-brand--4);
+  border-radius: 0.5rem;
+}
+
+.addBtn:hover {
+  color: #fff;
+  background-color: var(--color-brand--4);
+}
+
+.editBtn {
+  display: flex;
+  background-color: transparent;
+  color: inherit;
+  font-size: 1.6rem;
+  padding: 0 0.5rem;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.editBtn:hover {
+  color: #fff;
+  background-color: var(--color-brand--4);
+}

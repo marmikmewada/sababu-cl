@@ -1,0 +1,243 @@
+/* PROFILE HIGHLIGHTS ACTIVITY */
+.profileHighlights {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  font-size: 1.6rem;
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.4rem;
+}
+
+.highlights .contributions {
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 2.4rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.profilePrograms {
+  background-color: #fff;
+  padding: 2.4rem;
+  border-radius: 1rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.contributions {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+
+  @media (max-width: 40rem) {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+}
+
+.contributions.household {
+  display: flex;
+  flex-direction: column;
+}
+
+/* .householdContainer {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.2rem;
+    padding: 0;
+  
+    @media (max-width: 40rem) {
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+  } */
+
+.familySize,
+.contributions .total .incidentContribution,
+.contributions .total .allPayments {
+  font-size: 2rem;
+}
+
+.familySize {
+  color: var(--color-bg--61);
+}
+
+.contributions .total .incidentContribution {
+  color: var(--color-bg--7);
+}
+
+.contributions .total .allPayments {
+  color: #69b4e2;
+}
+
+.totalDesc {
+  display: flex;
+  flex-direction: column;
+}
+
+.amount {
+  padding-top: 0.1rem;
+  color: #737373;
+}
+
+.contributions .total {
+  padding: 0;
+  font-size: 1.4rem;
+  color: #76756f9a;
+}
+
+.householdSize {
+  position: relative;
+  padding-top: 1.2rem;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  @media (max-width: 40rem) {
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+  }
+}
+
+.contributions i:global(.fa-magnifying-glass):hover {
+  color: var(--color-brand--3);
+}
+
+.household {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.householdTotal {
+  font-size: 2.4rem;
+  color: var(--color-bg--61);
+}
+
+.householdComposition {
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+}
+
+.adult,
+.children,
+.emrContact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  @media (max-width: 40rem) {
+    font-size: 1.4rem;
+  }
+}
+
+.adult span,
+.children span {
+  font-size: 1.4rem;
+  padding-left: 0.8rem;
+  /* color: var(--color-brand--4); */
+  text-align: center;
+}
+
+.planPayment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #efefef;
+  border-radius: 2rem;
+  font-size: 2.4rem;
+  padding: 1.6rem;
+}
+
+.planPayment p {
+  font-size: 1.2rem;
+}
+
+/* PROGRAMS */
+.profilePrograms ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  @media (max-width: 54rem) {
+    font-size: 1.4rem;
+  }
+}
+
+.profilePrograms ul li {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr 1fr 0.5fr;
+  gap: 1rem;
+  border-bottom: 0.01rem solid #d6d6d6;
+  padding: 1.2rem;
+}
+
+/*  */
+@media only screen and (min-width: 8rem) and (max-width: 20rem) {
+  .profileOverview {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .familySize,
+  .contributions .total .incidentContribution,
+  .contributions .total .allPayments {
+    font-size: 1.6rem;
+  }
+
+  .highlights {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+  }
+}
+
+@media only screen and (min-width: 18rem) and (max-width: 40rem) {
+  .highlights {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+  }
+
+  .familySize,
+  .contributions .total .incidentContribution,
+  .contributions .total .allPayments {
+    font-size: 1.8rem;
+  }
+}
+
+/*  */
+@media (min-width: 30rem) {
+  .highlights {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+  }
+}
+
+@media (min-width: 50rem) {
+  .familySize,
+  .contributions .total .incidentContribution,
+  .contributions .total .allPayments {
+    font-size: 2rem;
+  }
+
+  .highlights {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .familySize,
+  .contributions .total .incidentContribution,
+  .contributions .total .allPayments {
+    font-size: 2.2rem;
+  }
+}

@@ -1,0 +1,42 @@
+/*  */
+.profileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.1rem solid #ddd;
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+}
+
+.profileHeader h2 {
+  margin: 0;
+}
+
+.setupList {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.setupList li {
+  background-color: #fff;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 0.1fr 2.8fr 0.1fr;
+  padding: 2.4rem;
+  gap: 2.4rem;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+.setupList li i {
+  color: var(--color-brand--4);
+  font-size: 1.8rem;
+}
+
+.setupList li i:fa-user .setupList li i:global(.fa-ellipsis-vertical) {
+  cursor: pointer;
+  padding: 1.2rem;
+}

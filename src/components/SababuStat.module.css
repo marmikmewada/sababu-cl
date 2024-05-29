@@ -1,0 +1,50 @@
+/*  */
+.stats {
+  gap: 2.4rem;
+}
+
+.statsDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.statsDetails div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.statsDetails span {
+  font-size: 1.2rem;
+  display: block;
+  padding-bottom: 2.4rem;
+}
+
+.registered,
+.households,
+.contritions,
+.volunteers {
+  padding: 2.4rem;
+  border-radius: 1rem;
+}
+
+.registered {
+  background-color: var(--color-bg--2);
+}
+
+.households {
+  background-color: var(--color-bg--3);
+}
+.contritions {
+  background-color: var(--color-bg--4);
+}
+
+.volunteers {
+  background-color: var(--color-brand--4);
+  color: #fff;
+}
+
+.volunteers h3 {
+  color: var(--color-text--1);
+}

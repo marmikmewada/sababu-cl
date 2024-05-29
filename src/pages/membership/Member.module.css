@@ -1,0 +1,168 @@
+.selectedCustomerContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.selectedMember {
+  border-top: 0.5rem solid var(--color-brand--4);
+  background-color: #fff;
+  padding: 3.2rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.headerSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.4rem;
+}
+
+.titleBox {
+  display: flex;
+  justify-content: space-between;
+  @media screen and (max-width: 40rem) {
+    flex-direction: column;
+  }
+  margin-bottom: 2.4rem;
+}
+
+.titleBox span {
+  background-color: #ededed;
+  color: var(--color-brand--4);
+  padding: 1rem 1.4rem;
+  border-radius: 0.5rem;
+}
+
+.selectedMember form div label {
+  font-weight: normal;
+}
+
+.formControlRow {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.oneColumn {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.twoColumn {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.4rem;
+  @media screen and (max-width: 40rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.twoColumnOneSmall {
+  display: grid;
+  grid-template-columns: 1.5fr 0.5fr;
+  gap: 2.4rem;
+  @media screen and (max-width: 40rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.threeColumn {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.4rem;
+  @media screen and (max-width: 40rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.threeColumnLastOneSmall {
+  display: grid;
+  grid-template-columns: 1.6fr 0.8fr 0.6fr;
+  gap: 2.4rem;
+  @media screen and (max-width: 40rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fourColumn {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.4rem;
+  @media screen and (max-width: 40rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.selectedMemberDetails {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4.8rem;
+  @media (max-width: 55rem) {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.selectedDependentDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.selectedDependentDetails p {
+  padding-left: 0;
+}
+
+.dependentForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.sectionCol div p {
+  display: grid;
+  grid-template-columns: 12rem 1.4fr;
+  align-items: center;
+}
+
+.sectionCol div p span {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #f5f5f5;
+  font-weight: 600;
+  height: 4.4rem;
+  padding: 0 1rem;
+  border-radius: 0.5rem;
+}
+
+.sectionCol.dependent div p span {
+  font-weight: 600;
+}
+
+.street {
+  display: flex;
+  gap: 2.4rem;
+}
+
+.deleteMemberBtn {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2.4rem;
+  gap: 2.4rem;
+}
+
+.btnColor {
+  background-color: var(--color-brand--4) !important;
+}

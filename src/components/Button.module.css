@@ -1,0 +1,120 @@
+.btn {
+  color: inherit;
+  text-transform: capitalize;
+  padding: 1rem 1.6rem;
+  font-family: inherit;
+  font-size: 1.6rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.back {
+  color: var(--color-brand--4);
+  border: 0.1rem solid var(--color-brand--4);
+  background-color: inherit;
+}
+
+.back:hover {
+  background-color: var(--color-brand--4);
+  color: #fff;
+}
+
+.memberBtn {
+  color: #fff;
+  background-color: var(--color-brand--4);
+}
+
+.memberBtn:hover {
+  background-color: var(--color-brand--5);
+  color: #fff;
+}
+
+.memberBtnOutline {
+  color: var(--color-brand--4);
+  border: 0.1rem solid var(--color-brand--4);
+  background-color: inherit;
+}
+
+.memberBtnOutline:hover {
+  background-color: var(--color-brand--4);
+  color: #fff;
+}
+
+.tertiary {
+  background-color: inherit;
+  color: inherit;
+  font-weight: 600;
+  border: 0.1rem solid var(--color-text--1);
+  box-shadow: inset 0.1em 0.1em var(--color-text--1);
+}
+
+.tertiary:hover {
+  background-color: var(--color-text--1);
+  color: var(--color-brand--2);
+}
+
+.delete {
+  background-color: inherit;
+  color: inherit;
+  background-color: var(--color-brand--3);
+  color: #fff;
+}
+
+.delete:hover {
+  background-color: #8b002a;
+  color: #fff;
+}
+
+.submit {
+  background-color: var(--color-brand--1);
+  color: var(--color-text--1);
+  font-weight: 600;
+  border: 0.1rem solid var(--color-text--1);
+}
+
+.submit:hover {
+  box-shadow: inset 0.1em 0.1em 0.1rem var(--color-brand--1);
+  background-color: var(--color-bg--2);
+  color: var(--color-brand--2);
+}
+
+/*  */
+.linkBtn a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+  background-color: var(--color-brand--1);
+  color: var(--color-text--1);
+  border: 0.1rem solid var(--color-brand--1);
+}
+
+.linkBtn a:hover {
+  background-color: inherit;
+  color: var(--color-brand--1);
+}
+
+/* 
+.primary {
+  font-weight: 600;
+  background-color: var(--color-brand--1);
+  color: var(--color-text--1);
+  border: 0.1rem solid var(--color-brand--1);
+}
+
+.primary:hover {
+  background-color: inherit;
+  color: var(--color-brand--1);
+} */
+
+/* .secondary {
+  font-weight: 600;
+  border: 0.1rem solid var(--color-brand--1);
+  color: var(--color-brand--1);
+  background-color: inherit;
+}
+
+.secondary:hover {
+  background-color: var(--color-brand--1);
+  color: var(--color-text--1);
+} */

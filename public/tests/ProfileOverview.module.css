@@ -1,0 +1,253 @@
+/*  */
+.profileOverview {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2.4rem;
+  margin: 0 0 6.4rem;
+  @media (max-width: 40rem) {
+    padding: 2.4rem;
+  }
+}
+
+/* 
+  PROFILE STYLE
+  */
+.profile {
+  background-color: #fff;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  padding: 1.2rem;
+  height: min-content;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.profileImg {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.profileImg img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 0;
+}
+
+.contact label {
+  font-size: 1.4rem;
+  color: #757466;
+  font-weight: normal;
+}
+
+.contact .emailTag,
+.contact .genderTag,
+.contact .cityStateTag {
+  padding: 1.2rem;
+  border-bottom: 0.05rem solid #d6d6d6;
+}
+
+.emailTag {
+  border-top: 0.05rem solid #d6d6d6;
+}
+
+.nameTag {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 1.4rem;
+}
+
+.nameTag p {
+  font-size: 1.4rem;
+  padding: 0.5rem;
+  border-top: 0.05rem solid #d6d6d6;
+  color: var(--color-bg--9);
+}
+
+/* 
+  PROFILE HIGHLIGHTS ACTIVITY
+  */
+.profileHighlights {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.4rem;
+}
+
+.highlights .contributions,
+.highlights .renewals {
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 2.4rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.profilePrograms {
+  padding: 2.4rem;
+  border-radius: 1rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.contributions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+
+.contributions .total .allPayments {
+  font-size: 4.8rem;
+  color: var(--color-bg--7);
+}
+
+.contributions .total .allRenewal {
+  font-size: 4.8rem;
+  color: #69b4e2;
+}
+
+.totalDesc {
+  display: flex;
+  flex-direction: column;
+}
+
+.amount {
+  padding-top: 0.1rem;
+  font-size: 1.6rem;
+  color: #737373;
+}
+
+.contributions .total {
+  padding: 0;
+  font-size: 1.4rem;
+  color: #76756f9a;
+}
+
+.contributions .progressIcons {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.contributions .progressIcons i:global(.fa-magnifying-glass) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.6rem;
+}
+
+.contributions .progressIcons i:global(.fa-chart-column) {
+  padding-top: 3.2rem;
+  font-size: 2.4rem;
+  color: var(--color-bg--3);
+}
+
+/* PROGRAMS */
+.profilePrograms ul {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  @media (max-width: 54rem) {
+    font-size: 1.4rem;
+  }
+}
+
+.profilePrograms ul li {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr 1fr 0.5fr;
+  gap: 1rem;
+  border-bottom: 0.01rem solid #d6d6d6;
+  padding: 1.2rem;
+}
+
+/*  */
+@media only screen and (min-width: 8rem) and (max-width: 20rem) {
+  .profileOverview {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .highlights {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media only screen and (min-width: 18rem) and (max-width: 40rem) {
+  .profileOverview {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+  }
+
+  .highlights {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*  */
+@media (min-width: 30rem) {
+  .profileOverview {
+    grid-template-columns: 1fr;
+  }
+
+  .highlights {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 40rem) {
+  .profileOverview {
+    grid-template-columns: 1fr;
+  }
+
+  .highlights {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 50rem) {
+  .profileOverview {
+    grid-template-columns: 2fr 3fr;
+  }
+
+  .highlights {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 64rem) {
+  .profileOverview {
+    grid-template-columns: 2fr 3fr;
+  }
+
+  .highlights {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 80rem) {
+  .highlights {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -1,0 +1,57 @@
+/* Event gallery styles */
+.eventGallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.8rem;
+  list-style: none;
+  padding-left: 0;
+}
+
+.eventHeader {
+  margin-bottom: 1.4rem;
+}
+
+.eventGalleryItem img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-top-right-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+}
+
+.eventGalleryItem {
+  background-color: var(--color-bg--2);
+  border-radius: 0.5rem;
+}
+
+.gallery {
+  padding: 2.4rem 1.2rem;
+  font-size: 1.4rem;
+}
+
+.gallery h4 {
+  margin-bottom: 1.2rem;
+}
+
+.galleryDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.gallerySchedule {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.gallerySchedule div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.galleryNotes {
+  color: #8e8e8e;
+}

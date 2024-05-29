@@ -1,0 +1,131 @@
+.userForm {
+  background: linear-gradient(
+    180deg,
+    var(--color-bg--2) 50%,
+    var(--color-brand--4) 50%
+  );
+  height: 100%;
+  position: relative;
+  overflow-y: scroll;
+}
+
+.userForm section {
+  background-color: #fff;
+  max-width: 60rem;
+  width: 90%;
+  margin: 6.4rem auto;
+  border-radius: 1rem;
+  padding: 2.4rem;
+  /* height: 80%; */
+}
+
+.userForm section form {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  height: 100%;
+}
+
+.userForm section div img {
+  width: 5rem;
+  height: auto;
+}
+
+.userForm section form h2 {
+  font-weight: 600;
+  text-align: center;
+}
+
+.inputGroups {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  @media screen and (max-width: 40rem) {
+    font-size: 1.2rem;
+  }
+}
+
+.inputControl {
+  display: grid;
+  /* grid-template-columns: 10rem 1fr; */
+  align-items: center;
+}
+
+.inputControl label {
+  color: #919191;
+}
+
+.inputControl.passwordUpdate {
+  display: grid;
+  /* grid-template-columns: 14rem 1fr; */
+  align-items: center;
+}
+
+.inputControl p {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5rem 0 1.4rem;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.userFormBtn {
+  margin-top: 3.2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.forgotAaccountDetails {
+  display: flex;
+  gap: 2.4rem;
+  justify-content: flex-end;
+  font-size: 1.4rem;
+}
+
+.forgotAaccountDetails a {
+  color: var(--color-brand--4);
+  text-decoration: none;
+}
+
+.forgotAaccountDetails a:hover {
+  color: #637b93;
+  text-decoration: underline;
+}
+
+/*  */
+.twoUnequalColumn {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2.4rem;
+  @media screen and (max-width: 40rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.twoEqualColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4rem;
+  @media screen and (max-width: 40rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.threeSmallColumns {
+  display: grid;
+  grid-template-columns: 2fr 0.4fr 0.6fr;
+  gap: 2.4rem;
+  @media screen and (max-width: 40rem) {
+    grid-template-columns: 2.2fr 0.4fr;
+  }
+}
+
+.password {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4rem;
+}

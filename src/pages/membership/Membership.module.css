@@ -1,0 +1,333 @@
+.newMembership {
+  position: relative;
+  line-height: 1.4;
+}
+
+.newMembership h2,
+.newMembership h3 {
+  font-weight: 600;
+}
+
+.newMembership .login {
+  font-size: 1.4rem;
+  padding: 2.4rem 6.4rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.newMembership .login a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.4rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  padding: 0.8rem 1rem;
+  border: 0.1rem solid #586e82;
+}
+
+.headerSection {
+  border-bottom: 2rem solid var(--color-brand--4);
+  padding: 6.4rem;
+  @media (max-width: 50rem) {
+    padding: 2.4rem;
+  }
+}
+
+.headerSection h2 {
+  margin-bottom: 2.4rem;
+}
+
+.header {
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.membershipElgibility {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  border-top: 3rem solid #e2e7ed;
+  gap: 2.4rem;
+  padding: 6.4rem;
+  @media (max-width: 50rem) {
+    padding: 2.4rem;
+  }
+}
+
+.membershipElgibility .eligibiltyCategories {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4.8rem;
+  @media (max-width: 45rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.eligibilityCategory {
+  /* box-shadow: 0 1rem 4.8rem rgb(0, 0, 0, 0.1); */
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  justify-content: center;
+  align-items: center;
+  padding: 2.4rem;
+}
+
+.eligibilityCategory i {
+  font-size: 7.2rem;
+  color: var(--color-brand--4);
+}
+
+.eligibilityCategory div {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/*  */
+.whyJoin h1 {
+  padding-bottom: 2.4rem;
+}
+
+.whyJoin {
+  font-size: 2.4rem;
+  background-color: #e2e7ed;
+  padding: 6.4rem;
+  @media (max-width: 40rem) {
+    padding: 2.4rem;
+    font-size: 1.8rem;
+  }
+}
+
+.requiredTool {
+  padding: 6.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  @media (max-width: 40rem) {
+    padding: 6.4rem 2.4rem;
+  }
+}
+
+.requiredTooContent {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 6.4rem;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 40rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.requiredTooContent div ul {
+  list-style: none;
+  padding-top: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  padding-left: 0;
+}
+.requiredTooContent div ul li::before {
+  content: "✓";
+  margin-right: 1rem;
+  color: var(--color-brand--4);
+  font-size: 2rem;
+}
+.requiredTooContent .requiredTooIcons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brand--4);
+  font-size: 20rem;
+}
+
+/* Member type styles */
+.membershipTypeContainer {
+  background-color: #fafafa;
+  padding: 6.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  @media (max-width: 40rem) {
+    padding: 2.4rem;
+  }
+}
+
+.membershipTypes {
+  padding-left: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2.4rem;
+  @media (max-width: 80rem) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media (max-width: 62rem) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 45rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.membershipTypes a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.membershipTypes a:hover,
+.membershipTypes a:active {
+  cursor: pointer;
+  border: 0.1 solid var(--color-brand--1);
+}
+
+.membershipType {
+  padding: 1.2rem 2.4rem;
+  border-radius: 1rem;
+  border: 0.01rem solid var(--color-brand--4);
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.membershipType.familyType {
+  border: 0.5rem solid var(--color-brand--4);
+}
+
+.membershipType .recommended {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 600;
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  height: 5rem;
+}
+
+.membershipType .recommended.family {
+  background-color: var(--color-brand--4);
+}
+
+.membershipType .membershipTypeHeader {
+  height: 14rem;
+}
+
+.membershipBtnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.membershipBtnContainer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.membershipBtnContainer a.btn {
+  background-color: var(--color-brand--4);
+  padding: 1rem 2.4rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.membershipType .membershipBtn {
+  background-color: var(--color-brand--4);
+  color: #fff;
+  font-weight: 600;
+  padding: 1rem 6.4rem;
+  border-radius: 0.5rem;
+  margin: 0 auto;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.membershipType .membershipBtn:hover {
+  background-color: #586e82;
+}
+
+.membershipType div h1 {
+  font-weight: 600;
+  text-align: center;
+  padding: 1.6rem;
+}
+
+.membershipType .requirementList {
+  padding-top: 2.4rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.membershipType .requirementList .requirementSubList {
+  padding: 1.2rem 3.2rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.membershipType .requirementList li::before {
+  content: "✓";
+  margin-right: 1rem;
+}
+
+.membershipType .requirementList .listException::before {
+  content: "𝖷";
+  margin-right: 1rem;
+  color: var(--color-brand--3);
+}
+
+.membershipTypePayment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.membershipTypePayment .basePay {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  font-size: 3.2rem;
+}
+
+.membershipTypePayment span {
+  font-size: 1.2rem;
+}
+
+/*  */
+.dependentRate {
+  padding: 6.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  box-shadow: 0 1rem 4.8rem rgb(0, 0, 0, 0.1);
+  border-top: 1rem solid var(--color-brand--4);
+  @media screen and (max-width: 40rem) {
+    padding: 2.4rem;
+  }
+}
+
+/* Popup */
+.label {
+  display: inline-flex;
+}
+.label i {
+  font-size: 1.4rem;
+}

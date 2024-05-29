@@ -1,0 +1,181 @@
+/*  ALL MEMBERS */
+.allMembers {
+  list-style: none;
+  padding-left: 0;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.2rem;
+  @media (max-width: 78rem) {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+  @media (max-width: 54rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*  */
+.profileHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.1rem solid #ddd;
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+}
+
+.profileHeader h2 {
+  margin: 0;
+}
+
+.profileHeader button i {
+  font-size: 1.6rem;
+}
+
+.memberPageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.memberPageHeader button {
+  background-color: var(--color-brand--4);
+  padding: 0.5rem 1rem;
+  color: #fff;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: 0.1rem solid var(--color-brand--4);
+}
+
+.memberPageHeader button:hover {
+  background-color: var(--color-bg-3);
+  color: var(--color-brand--4);
+}
+
+.household {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.memberList {
+  position: relative;
+  cursor: pointer;
+}
+.allMembers li a:link,
+.allMembers li a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+.memberCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.memberId {
+  font-size: 1.4rem;
+}
+
+.members:hover {
+  background-color: #f9f9f9;
+  border: 0.1rem solid var(--color-brand--4);
+  border-left: 0.5rem solid var(--color-brand--4);
+}
+
+.members {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+  background-color: #fff;
+  padding: 2.4rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  border-left: 0.5rem solid var(--color-brand--4);
+  @media (max-width: 42rem) {
+    font-size: 1.4rem;
+  }
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+.memberAvatar {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+
+.memberDetails .single {
+  color: #6c3082;
+}
+.memberDetails .singleFamily {
+  color: #009fc7;
+}
+.memberDetails .family {
+  color: #6e89a3;
+}
+.memberDetails .retired {
+  color: #b8860b;
+}
+
+/* Add button container */
+.btnConntainer {
+  display: flex;
+  gap: 1.2rem;
+}
+
+/* Modal */
+.modal {
+  height: 100vh;
+  overflow: scroll;
+}
+
+.addMember {
+  position: relative;
+}
+
+/* Modal.css */
+.modalOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  position: relative;
+  max-width: 100rem;
+  width: 80%;
+  background: white;
+  padding: 2rem;
+  border-radius: 0.8rem;
+}
+
+.modalHeader {
+  margin-bottom: 2.4rem;
+}
+
+.modalCloseBtn {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+}
+
+.modalCloseBtn:hover {
+  color: #fff;
+  background-color: var(--color-brand--4);
+}
