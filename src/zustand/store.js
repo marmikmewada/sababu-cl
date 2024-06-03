@@ -77,7 +77,7 @@ const useStore = create((set) => ({
         localStorage.setItem('token', data.token);
         set((state) => ({
           user: data.user,
-          newuser:data.user,
+          newuser: data.user,
           token: data.token,
           isAuthenticated: true,
           role: data.role || null,
@@ -129,15 +129,13 @@ const useStore = create((set) => ({
       }
       
       const data = await response.json();
+      await useStore.getState().checkMembershipStatus();
       return data.status; // Return the updated membership status
     } catch (error) {
       console.error('Error applying for membership:', error);
       throw error;
     }
   },
-  
-  
-  
 
   // Fetch user profile
   fetchUserProfile: async () => {
@@ -199,7 +197,6 @@ const useStore = create((set) => ({
 
       const data = await response.json();
       console.log('Membership status data:', data);
-      
 
       set({ membershipStatus: data.status });
 
@@ -255,9 +252,92 @@ const useStore = create((set) => ({
       });
     }
   },
+
+  // Update user profile
+  updateUserProfile: async (updateFields) => {
+    try {
+      const response = await fetch(`${BACK_URL}/users/profile`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${useStore.getState().token}`,
+        },
+        body: JSON.stringify(updateFields),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update user profile');
+      }
+
+      const data = await response.json();
+      set({ profile: data.user });
+      return data;
+    } catch (error) {
+      console.error('Error updating user profile:', error);
+      throw error;
+    }
+  },
+
+  // Update member profile
+  updateMemberProfile: async (updates) => {
+    try {
+      const response = await fetch(`${BACK_URL}/users/member`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${useStore.getState().token}`,
+        },
+        body: JSON.stringify(updates),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update member profile');
+      }
+
+      const data = await response.json();
+      set((state) => ({
+        profile: { ...state.profile, member: data.member },
+      }));
+      return data;
+    } catch (error) {
+      console.error('Error updating member profile:', error);
+      throw error;
+    }
+  },
+
+  // Update household profile
+  updateHouseholdProfile: async (updates) => {
+    try {
+      const response = await fetch(`${BACK_URL}/users/household`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${useStore.getState().token}`,
+        },
+        body: JSON.stringify(updates),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update household profile');
+      }
+
+      const data = await response.json();
+      set((state) => ({
+        profile: { ...state.profile, household: data.household },
+      }));
+      return data;
+    } catch (error) {
+      console.error('Error updating household profile:', error);
+      throw error;
+    }
+  },
 }));
 
 // Initialize the store on app start
 useStore.getState().initializeStore();
 
 export default useStore;
+
+
+
+

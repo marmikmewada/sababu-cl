@@ -9,6 +9,9 @@ import Register from './pages/authentication/Register';
 import ProfilePage from './pages/profile/ProfilePage';
 import Login from './pages/authentication/Login';
 import useStore from './zustand/store'; // Adjust the import path as necessary
+import EditUser from './pages/profile/EditUser';
+import EditMember from './pages/profile/EditMember';
+// import EditProfile from './pages/profile/EditProfile';
 
 function App() {
   const { initializeStore } = useStore(); // Destructure initializeStore from useStore
@@ -28,6 +31,11 @@ function App() {
         <Route path="/app/membership" element={<Membership />} />
         <Route path="/app/users/register" element={<Register />} />
         <Route path="/app/users/login" element={<Login />} />
+        {/* <Route path="/app/user/edit" element={<EditProfile />} /> */}
+        <Route path="/app/user/edit" element={<EditUser/>} />
+        <Route path="/app/member/edit" element={<EditMember/>} />
+
+
       </Routes>
     </>
   );

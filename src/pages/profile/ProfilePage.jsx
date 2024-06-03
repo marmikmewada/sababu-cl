@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import useStore from '../../zustand/store';
 
 const UserProfile = () => {
@@ -7,16 +7,24 @@ const UserProfile = () => {
   const navigate = useNavigate();
   const [selectedMembershipType, setSelectedMembershipType] = useState('');
   const [error, setError] = useState('');
+  const [showPopup, setShowPopup] = useState(true);
 
   useEffect(() => {
     fetchUserProfile();
   }, [fetchUserProfile]);
 
   useEffect(() => {
+    if (membershipStatus) {
+      const timer = setTimeout(() => {
+        setShowPopup(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [membershipStatus]);
+
+  useEffect(() => {
     if (membershipStatus === 'applied') {
-      // Perform actions after membership is applied
-      console.log("Membership applied successfully");
-      fetchUserProfile(); // Fetch profile again to update with membership data
+      fetchUserProfile();
     }
   }, [membershipStatus, fetchUserProfile]);
 
@@ -34,12 +42,10 @@ const UserProfile = () => {
       setError('Please select a membership type');
       return;
     }
-  
+
     try {
       const membershipData = { membershipType: selectedMembershipType };
       await applyForMembership(membershipData);
-      // setMembershipStatus(membershipStatus);
-      // Optionally, you can handle success or navigate to another page
     } catch (error) {
       setError('Failed to apply for membership');
       console.error('Error applying for membership:', error);
@@ -49,6 +55,21 @@ const UserProfile = () => {
   const handleDropdownChange = (event) => {
     setSelectedMembershipType(event.target.value);
     setError('');
+  };
+
+  const getPopupMessage = () => {
+    switch (membershipStatus) {
+      case 'none':
+        return 'Apply for membership and be part of the good cause.';
+      case 'applied':
+        return 'Kindly contact admin@gmail.com to get your membership approved.';
+      case 'about to expire':
+        return 'Please contact admin@gmail.com to renew the membership before it expires.';
+      case 'active':
+        return 'Welcome to our community!';
+      default:
+        return '';
+    }
   };
 
   if (isLoadingProfile) {
@@ -69,7 +90,15 @@ const UserProfile = () => {
     <div>
       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded mr-1" onClick={handleSignOut}>Sign Out</button>
       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded mr-1" onClick={handleHome}>Home</button>
+
+      {showPopup && (
+        <div className="fixed top-0 left-0 right-0 bg-gray-800 text-white p-4 flex justify-between items-center">
+          <span>{getPopupMessage()}</span>
+          <button onClick={() => setShowPopup(false)} className="text-white ml-4">Close</button>
+        </div>
+      )}
       {profileComponent}
+      {/* <Link to="/app/user/edit">Edit Profile</Link> */}
 
       {membershipStatus === 'none' && (
         <div className="mt-4">
@@ -91,34 +120,33 @@ const UserProfile = () => {
   );
 };
 
-
-
 const renderProfile = (profile, membershipStatus) => {
-  console.log(membershipStatus);
-  console.log(profile.profile?.firstName, "pfp");
-  console.log(profile, "ppp");
+  const profileFields = {
+    "First Name": profile.user?.firstName,
+    "Middle Name": profile.user?.middleName,
+    "Last Name": profile.user?.lastName,
+    "Email": profile.user?.email,
+    "Phone": profile.user?.phone,
+    "Gender": profile.user?.gender,
+    "Date of Birth": profile.user?.dob ? new Date(profile.user.dob).toLocaleDateString() : '',
+    "Street": profile.user?.address?.street,
+    "City": profile.user?.address?.city,
+    "State": profile.user?.address?.state,
+    "ZIP": profile.user?.address?.zip
+  };
 
-  if (membershipStatus === 'none') {
+  const renderFields = (fields) => {
+    return Object.keys(fields).map((key) => (
+      <p key={key}>{key}: {fields[key] || ''}</p>
+    ));
+  };
+
+  if (membershipStatus === 'none' || membershipStatus === 'applied') {
     return (
       <div>
         <h2>Basic User Profile</h2>
-        <p>First Name: {profile.profile?.firstName || ''}</p>
-        <p>Last Name: {profile.profile?.lastName || ''}</p>
-        <p>Email: {profile.profile?.email || ''}</p>
-        <p>Phone: {profile.profile?.phone || ''}</p>
-      </div>
-    );
-  }
-  
-  if ( membershipStatus === 'applied') {
-    console.log(profile, "apppp");
-    return (
-      <div>
-        <h2>Basic User Profile</h2>
-        <p>First Name: {profile.profile?.firstName || ''}</p>
-        <p>Last Name: {profile.profile?.lastName || ''}</p>
-        <p>Email: {profile.profile?.email || ''}</p>
-        <p>Phone: {profile.profile?.phone || ''}</p>
+        {renderFields(profileFields)}
+        <Link to="/app/user/edit">Edit Profile</Link>
       </div>
     );
   }
@@ -126,21 +154,8 @@ const renderProfile = (profile, membershipStatus) => {
   return (
     <div>
       <h2>User Profile</h2>
-      <p>First Name: {profile.user?.firstName || ''}</p>
-      <p>Middle Name: {profile.user?.middleName || ''}</p>
-      <p>Last Name: {profile.user?.lastName || ''}</p>
-      <p>Email: {profile.user?.email || ''}</p>
-      <p>Phone: {profile.user?.phone || ''}</p>
-      <p>Gender: {profile.user?.gender || ''}</p>
-      <p>Date of Birth: {profile.user?.dob ? new Date(profile.user.dob).toLocaleDateString() : ''}</p>
-      <p>Image URL: {profile.user?.imageUrl || ''}</p>
-      <p>Role: {profile.user?.role || ''}</p>
-      <h2>Address</h2>
-      <p>Street: {profile.user?.address?.street || ''}</p>
-      <p>Apartment: {profile.user?.address?.apt || ''}</p>
-      <p>City: {profile.user?.address?.city || ''}</p>
-      <p>State: {profile.user?.address?.state || ''}</p>
-      <p>ZIP: {profile.user?.address?.zip || ''}</p>
+      <Link to="/app/member/edit">Edit Profile</Link>
+      {renderFields(profileFields)}
 
       <h2>Member Profile</h2>
       <p>Nationality: {profile.member?.nationality || ''}</p>
@@ -155,6 +170,16 @@ const renderProfile = (profile, membershipStatus) => {
       <p>Work Address: {profile.member?.employment?.workAddress || ''}</p>
       <p>Work Phone: {profile.member?.employment?.workPhone || ''}</p>
       <p>Work Email: {profile.member?.employment?.workEmail || ''}</p>
+
+      <h3>Documents</h3>
+      <h4>Passport</h4>
+      <p>Passport Number: {profile.member?.documents?.passport?.number || ''}</p>
+      <p>Expiration Date: {profile.member?.documents?.passport?.expirationDate ? new Date(profile.member.documents.passport.expirationDate).toLocaleDateString() : ''}</p>
+
+      <h4>Driver License</h4>
+      <p>License Number: {profile.member?.documents?.driverLicense?.number || ''}</p>
+      <p>Expiration Date: {profile.member?.documents?.driverLicense?.expirationDate ? new Date(profile.member.documents.driverLicense.expirationDate).toLocaleDateString() : ''}</p>
+      <p>State: {profile.member?.documents?.driverLicense?.state || ''}</p>
 
       <h3>Emergency Contact</h3>
       {profile.member?.emergencyContact?.map((contact, index) => (
@@ -227,6 +252,3 @@ const renderProfile = (profile, membershipStatus) => {
 };
 
 export default UserProfile;
-
-
-

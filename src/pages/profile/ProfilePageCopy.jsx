@@ -1,14 +1,33 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+
+import React, { useState, useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import useStore from '../../zustand/store';
 
 const UserProfile = () => {
-  const { fetchUserProfile, profile, isLoadingProfile, logout, membershipStatus } = useStore();
+  const { fetchUserProfile, profile, isLoadingProfile, logout, membershipStatus, applyForMembership } = useStore();
   const navigate = useNavigate();
+  const [selectedMembershipType, setSelectedMembershipType] = useState('');
+  const [error, setError] = useState('');
+  const [showPopup, setShowPopup] = useState(true);
 
   useEffect(() => {
     fetchUserProfile();
   }, [fetchUserProfile]);
+
+  useEffect(() => {
+    if (membershipStatus) {
+      const timer = setTimeout(() => {
+        setShowPopup(false);
+      }, 3000);
+      return () => clearTimeout(timer); 
+    }
+  }, [membershipStatus]);
+
+  useEffect(() => {
+    if (membershipStatus === 'applied') {
+      fetchUserProfile(); 
+    }
+  }, [membershipStatus, fetchUserProfile]);
 
   const handleSignOut = () => {
     logout();
@@ -19,306 +38,227 @@ const UserProfile = () => {
     navigate('/');
   };
 
+  const handleApplyForMembership = async () => {
+    if (!selectedMembershipType) {
+      setError('Please select a membership type');
+      return;
+    }
+  
+    try {
+      const membershipData = { membershipType: selectedMembershipType };
+      await applyForMembership(membershipData);
+      // Optionally, you can handle success or navigate to another page
+    } catch (error) {
+      setError('Failed to apply for membership');
+      console.error('Error applying for membership:', error);
+    }
+  };
+
+  const handleDropdownChange = (event) => {
+    setSelectedMembershipType(event.target.value);
+    setError('');
+  };
+
+  const getPopupMessage = () => {
+    switch (membershipStatus) {
+      case 'none':
+        return 'Apply for membership and be part of the good cause.';
+      case 'applied':
+        return 'Kindly contact admin@gmail.com to get your membership approved.';
+      case 'about to expire':
+        return 'Please contact admin@gmail.com to renew the membership before it expires.';
+      case 'active':
+        return 'Welcome to our community!';
+      default:
+        return '';
+    }
+  };
+
   if (isLoadingProfile) {
-    return <div className="p-4 text-center">Loading profile...</div>;
+    return <div>Loading profile...</div>;
   }
 
   if (!profile) {
-    return <div className="p-4 text-center">No profile data available</div>;
+    return <div>No profile data available</div>;
   }
 
   if (membershipStatus === 'denied') {
-    return <h1 className="p-4 text-center">Profile Locked</h1>;
+    return <h1>Profile Locked</h1>;
   }
 
   const profileComponent = renderProfile(profile, membershipStatus);
 
   return (
-    <div className="p-4">
-      <button
-        onClick={handleSignOut}
-        className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
-      >
-        Sign Out
-      </button>
-      <button
-        onClick={handleHome}
-        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded ml-4"
-      >
-        Home
-      </button>
-      {profileComponent}
-    </div>
-  );
-};
+    <div>
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded mr-1" onClick={handleSignOut}>Sign Out</button>
+      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded mr-1" onClick={handleHome}>Home</button>
 
-const renderProfile = (profile, membershipStatus) => {
-  return (
-    <div className="mt-8">
-      {membershipStatus === 'none' || membershipStatus === 'applied' ? (
-        <div>
-          <h2 className="text-2xl font-bold mb-4">Basic User Profile</h2>
-          <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <p className="text-gray-700 font-bold">First Name:</p>
-            <p className="text-gray-900 mb-4">{profile.profile?.firstName || ''}</p>
-
-            <p className="text-gray-700 font-bold">Last Name:</p>
-            <p className="text-gray-900 mb-4">{profile.profile?.lastName || ''}</p>
-
-            <p className="text-gray-700 font-bold">Email:</p>
-            <p className="text-gray-900 mb-4">{profile.profile?.email || ''}</p>
-
-            <p className="text-gray-700 font-bold">Phone:</p>
-            <p className="text-gray-900 mb-4">{profile.profile?.phone || ''}</p>
-          </div>
+      
+      {showPopup && (
+        <div className="fixed top-0 left-0 right-0 bg-gray-800 text-white p-4 flex justify-between items-center">
+          <span>{getPopupMessage()}</span>
+          <button onClick={() => setShowPopup(false)} className="text-white ml-4">Close</button>
         </div>
-      ) : (
-        <div>
-          <h2 className="text-2xl font-bold mb-4">User Profile</h2>
-          <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <p className="text-gray-700 font-bold">First Name:</p>
-            <p className="text-gray-900 mb-4">{profile.user?.firstName || ''}</p>
-
-            <p className="text-gray-700 font-bold">Middle Name:</p>
-            <p className="text-gray-900 mb-4">{profile.user?.middleName || ''}</p>
-
-            <p className="text-gray-700 font-bold">Last Name:</p>
-            <p className="text-gray-900 mb-4">{profile.user?.lastName || ''}</p>
-
-            <p className="text-gray-700 font-bold">Email:</p>
-            <p className="text-gray-900 mb-4">{profile.user?.email || ''}</p>
-
-            <p className="text-gray-700 font-bold">Phone:</p>
-            <p className="text-gray-900 mb-4">{profile.user?.phone || ''}</p>
-
-            <p className="text-gray-700 font-bold">Gender:</p>
-            <p className="text-gray-900 mb-4">{profile.user?.gender || ''}</p>
-
-            <p className="text-gray-700 font-bold">Date of Birth:</p>
-            <p className="text-gray-900 mb-4">
-              {profile.user?.dob ? new Date(profile.user.dob).toLocaleDateString() : ''}
-            </p>
-
-            <p className="text-gray-700 font-bold">Image URL:</p>
-            <p className="text-gray-900 mb-4">{profile.user?.imageUrl || ''}</p>
-
-            <p className="text-gray-700 font-bold">Role:</p>
-            <p className="text-gray-900 mb-4">{profile.user?.role || ''}</p>
-
-            <h3 className="text-xl font-bold mt-4">Address</h3>
-            <div className="bg-gray-100 shadow-md rounded p-4 mt-2">
-              <p className="text-gray-700 font-bold">Street:</p>
-              <p className="text-gray-900 mb-2">{profile.user?.address?.street || ''}</p>
-
-              <p className="text-gray-700 font-bold">Apartment:</p>
-              <p className="text-gray-900 mb-2">{profile.user?.address?.apt || ''}</p>
-
-              <p className="text-gray-700 font-bold">City:</p>
-              <p className="text-gray-900 mb-2">{profile.user?.address?.city || ''}</p>
-
-              <p className="text-gray-700 font-bold">State:</p>
-              <p className="text-gray-900 mb-2">{profile.user?.address?.state || ''}</p>
-
-              <p className="text-gray-700 font-bold">ZIP:</p>
-              <p className="text-gray-900 mb-2">{profile.user?.address?.zip || ''}</p>
-            </div>
-
-            <h2 className="text-2xl font-bold mt-8">Member Profile</h2>
-            <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-              <p className="text-gray-700 font-bold">Nationality:</p>
-              <p className="text-gray-900 mb-4">{profile.member?.nationality || ''}</p>
-
-              <p className="text-gray-700 font-bold">Hometown:</p>
-              <p className="text-gray-900 mb-4">{profile.member?.hometown || ''}</p>
-
-              <p className="text-gray-700 font-bold">Marital Status:</p>
-              <p className="text-gray-900 mb-4">{profile.member?.maritalStatus || ''}</p>
-
-              <p className="text-gray-700 font-bold">Origin:</p>
-              <p className="text-gray-900 mb-4">{profile.member?.origin || ''}</p>
-
-              <h3 className="text-xl font-bold mt-4">Employment</h3>
-              <div className="bg-gray-100 shadow-md rounded p-4 mt-2">
-                <p className="text-gray-700 font-bold">Company:</p>
-                <p className="text-gray-900 mb-2">{profile.member?.employment?.company || ''}</p>
-
-                <p className="text-gray-700 font-bold">Employment Status:</p>
-                <p className="text-gray-900 mb-2">{profile.member?.employment?.employmentStatus || ''}</p>
-
-                <p className="text-gray-700 font-bold">Job Title:</p>
-                <p className="text-gray-900 mb-2">{profile.member?.employment?.jobTitle || ''}</p>
-
-                <p className="text-gray-700 font-bold">Work Address:</p>
-                <p className="text-gray-900 mb-2">{profile.member?.employment?.workAddress || ''}</p>
-
-                <p className="text-gray-700 font-bold">Work Phone:</p>
-                <p className="text-gray-900 mb-2">{profile.member?.employment?.workPhone || ''}</p>
-
-                <p className="text-gray-700 font-bold">Work Email:</p>
-                <p className="text-gray-900 mb-2">{profile.member?.employment?.workEmail || ''}</p>
-              </div>
-
-              <h3 className="text-xl font-bold mt-4">Emergency Contact</h3>
-              {profile.member?.emergencyContact?.map((contact, index) => (
-                <div key={index} className="bg-gray-100 shadow-md rounded p-4 mt-2">
-                  <p className="text-gray-700 font-bold">Name:</p>
-                  <p className="text-gray-900 mb-2">{contact.name || ''}</p>
-
-                  <p className="text-gray-700 font-bold">Relationship:</p>
-                  <p className="text-gray-900 mb-2">{contact.relation || ''}</p>
-
-                  <p className="text-gray-700 font-bold">Phone:</p>
-                  <p className="text-gray-900 mb-2">{contact.phone || ''}</p>
-
-                  <p className="text-gray-700 font-bold">Email:</p>
-                  <p className="text-gray-900 mb-2">{contact.email || ''}</p>
-
-                  <h4 className="text-lg font-bold mt-2">Address</h4>
-                  <p className="text-gray-700 font-bold">Street:</p>
-                  <p className="text-gray-900 mb-2">{contact.address?.street || ''}</p>
-
-                  <p                   className="text-gray-700 font-bold">Apartment:</p>
-                  <p className="text-gray-900 mb-2">{contact.address?.apt || ''}</p>
-
-                  <p className="text-gray-700 font-bold">City:</p>
-                  <p className="text-gray-900 mb-2">{contact.address?.city || ''}</p>
-
-                  <p className="text-gray-700 font-bold">State:</p>
-                  <p className="text-gray-900 mb-2">{contact.address?.state || ''}</p>
-
-                  <p className="text-gray-700 font-bold">ZIP:</p>
-                  <p className="text-gray-900 mb-2">{contact.address?.zip || ''}</p>
-                </div>
-              ))}
-
-              <h2 className="text-2xl font-bold mt-8">Household Profile</h2>
-              <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                <p className="text-gray-700 font-bold">Household ID:</p>
-                <p className="text-gray-900 mb-4">{profile.household?._id || ''}</p>
-
-                <h3 className="text-xl font-bold mt-4">Spouse</h3>
-                <div className="bg-gray-100 shadow-md rounded p-4 mt-2">
-                  <p className="text-gray-700 font-bold">First Name:</p>
-                  <p className="text-gray-900 mb-2">{profile.household?.spouse?.firstName || ''}</p>
-
-                  <p className="text-gray-700 font-bold">Last Name:</p>
-                  <p className="text-gray-900 mb-2">{profile.household?.spouse?.lastName || ''}</p>
-
-                  <p className="text-gray-700 font-bold">Email:</p>
-                  <p className="text-gray-900 mb-2">{profile.household?.spouse?.email || ''}</p>
-
-                  <p className="text-gray-700 font-bold">Birthdate:</p>
-                  <p className="text-gray-900 mb-2">
-                    {profile.household?.spouse?.birthdate
-                      ? new Date(profile.household.spouse.birthdate).toLocaleDateString()
-                      : ''}
-                  </p>
-
-                  <p className="text-gray-700 font-bold">Nationality:</p>
-                  <p className="text-gray-900 mb-2">{profile.household?.spouse?.nationality || ''}</p>
-
-                  <p className="text-gray-700 font-bold">Sex:</p>
-                  <p className="text-gray-900 mb-2">{profile.household?.spouse?.sex || ''}</p>
-
-                  <h4 className="text-lg font-bold mt-2">Address</h4>
-                  <p className="text-gray-700 font-bold">Street:</p>
-                  <p className="text-gray-900 mb-2">{profile.household?.spouse?.address?.street || ''}</p>
-
-                  <p className="text-gray-700 font-bold">Apartment:</p>
-                  <p className="text-gray-900 mb-2">{profile.household?.spouse?.address?.apt || ''}</p>
-
-                  <p className="text-gray-700 font-bold">City:</p>
-                  <p className="text-gray-900 mb-2">{profile.household?.spouse?.address?.city || ''}</p>
-
-                  <p className="text-gray-700 font-bold">State:</p>
-                  <p className="text-gray-900 mb-2">{profile.household?.spouse?.address?.state || ''}</p>
-
-                  <p className="text-gray-700 font-bold">ZIP:</p>
-                  <p className="text-gray-900 mb-2">{profile.household?.spouse?.address?.zip || ''}</p>
-                </div>
-
-                <h3 className="text-xl font-bold mt-4">Children</h3>
-                {profile.household?.children?.map((child, index) => (
-                  <div key={index} className="bg-gray-100 shadow-md rounded p-4 mt-2">
-                    <p className="text-gray-700 font-bold">First Name:</p>
-                    <p className="text-gray-900 mb-2">{child.firstName || ''}</p>
-
-                    <p className="text-gray-700 font-bold">Last Name:</p>
-                    <p className="text-gray-900 mb-2">{child.lastName || ''}</p>
-
-                    <p className="text-gray-700 font-bold">Email:</p>
-                    <p className="text-gray-900 mb-2">{child.email || ''}</p>
-
-                    <p className="text-gray-700 font-bold">Birthdate:</p>
-                    <p className="text-gray-900 mb-2">
-                      {child.birthdate ? new Date(child.birthdate).toLocaleDateString() : ''}
-                    </p>
-
-                    <h4 className="text-lg font-bold mt-2">Address</h4>
-                    <p className="text-gray-700 font-bold">Street:</p>
-                    <p className="text-gray-900 mb-2">{child.address?.street || ''}</p>
-
-                    <p className="text-gray-700 font-bold">Apartment:</p>
-                    <p className="text-gray-900 mb-2">{child.address?.apt || ''}</p>
-
-                    <p className="text-gray-700 font-bold">City:</p>
-                    <p className="text-gray-900 mb-2">{child.address?.city || ''}</p>
-
-                    <p className="text-gray-700 font-bold">State:</p>
-                    <p className="text-gray-900 mb-2">{child.address?.state || ''}</p>
-
-                    <p className="text-gray-700 font-bold">ZIP:</p>
-                    <p className="text-gray-900 mb-2">{child.address?.zip || ''}</p>
-                  </div>
-                ))}
-
-                <h3 className="text-xl font-bold mt-4">Adult Dependents</h3>
-                {profile.household?.adultDependents?.map((dependent, index) => (
-                  <div key={index} className="bg-gray-100 shadow-md rounded p-4 mt-2">
-                    <p className="text-gray-700 font-bold">First Name:</p>
-                    <p className="text-gray-900 mb-2">{dependent.firstName || ''}</p>
-
-                    <p className="text-gray-700 font-bold">Last Name:</p>
-                    <p className="text-gray-900 mb-2">{dependent.lastName || ''}</p>
-
-                    <p className="text-gray-700 font-bold">Email:</p>
-                    <p className="text-gray-900 mb-2">{dependent.email || ''}</p>
-
-                    <p className="text-gray-700 font-bold">Birthdate:</p>
-                    <p className="text-gray-900 mb-2">
-                      {dependent.birthdate ? new Date(dependent.birthdate).toLocaleDateString() : ''}
-                    </p>
-
-                    <p className="text-gray-700 font-bold">Nationality:</p>
-                    <p className="text-gray-900 mb-2">{dependent.nationality || ''}</p>
-
-                    <p className="text-gray-700 font-bold">Sex:</p>
-                    <p className="text-gray-900 mb-2">{dependent.sex || ''}</p>
-
-                    <h4 className="text-lg font-bold mt-2">Address</h4>
-                    <p className="text-gray-700 font-bold">Street:</p>
-                    <p className="text-gray-900 mb-2">{dependent.address?.street || ''}</p>
-
-                    <p className="text-gray-700 font-bold">Apartment:</p>
-                    <p className="text-gray-900 mb-2">{dependent.address?.apt || ''}</p>
-
-                    <p className="text-gray-700 font-bold">City:</p>
-                    <p className="text-gray-900 mb-2">{dependent.address?.city || ''}</p>
-
-                    <p className="text-gray-700 font-bold">State:</p>
-                    <p className="text-gray-900 mb-2">{dependent.address?.state || ''}</p>
-
-                    <p className="text-gray-700 font-bold">ZIP:</p>
-                    <p className="text-gray-900 mb-2">{dependent.address?.zip || ''}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+      )}
+      {profileComponent}
+      <Link to="/app/user/edit">Edit Profile</Link>
+
+      {membershipStatus === 'none' && (
+        <div className="mt-4">
+          <label htmlFor="membershipType" className="mr-2 font-bold">Select Membership Type:</label>
+          <select id="membershipType" value={selectedMembershipType} onChange={handleDropdownChange} className="mr-2">
+            <option value="">-- Select Membership Type --</option>
+            <option value="single">Single</option>
+            <option value="singlefamily">Single Family</option>
+            <option value="family">Family</option>
+            <option value="seniorcitizen">Senior Citizen</option>
+          </select>
+          <button onClick={handleApplyForMembership} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Apply for Membership
+          </button>
+          {error && <p className="text-red-500">{error}</p>}
         </div>
       )}
     </div>
   );
 };
 
+const renderProfile = (profile, membershipStatus) => {
+  console.log(membershipStatus);
+  console.log(profile.profile?.firstName, "pfp");
+  console.log(profile, "ppp");
+
+  if (membershipStatus === 'none') {
+    return (
+      <div>
+        <h2>Basic User Profile</h2>
+        <p>First Name: {profile.user?.firstName || ''}</p>
+        <p>Last Name: {profile.user?.lastName || ''}</p>
+        <p>Email: {profile.user?.email || ''}</p>
+        <p>Phone: {profile.user?.phone || ''}</p>
+        {/* add link tag which takes user to "/app/user/edit" page  */}
+      </div>
+    );
+  }
+  
+  if (membershipStatus === 'applied') {
+    console.log(profile, "apppp");
+    return (
+      <div>
+        <h2>Basic User Profile</h2>
+        <p>First Name: {profile.user?.firstName || ''}</p>
+        <p>Last Name: {profile.user?.lastName || ''}</p>
+        <p>Email: {profile.user?.email || ''}</p>
+        <p>Phone: {profile.user?.phone || ''}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <h2>User Profile</h2>
+      <p>First Name: {profile.user?.firstName || ''}</p>
+      <p>Middle Name: {profile.user?.middleName || ''}</p>
+      <p>Last Name: {profile.user?.lastName || ''}</p>
+      <p>Email: {profile.user?.email || ''}</p>
+      <p>Phone: {profile.user?.phone || ''}</p>
+      <p>Gender: {profile.user?.gender || ''}</p>
+      <p>Date of Birth: {profile.user?.dob ? new Date(profile.user.dob).toLocaleDateString() : ''}</p>
+      <p>Image URL: {profile.user?.imageUrl || ''}</p>
+      <p>Role: {profile.user?.role || ''}</p>
+      <h2>Address</h2>
+      <p>Street: {profile.user?.address?.street || ''}</p>
+      <p>Apartment: {profile.user?.address?.apt || ''}</p>
+      <p>City: {profile.user?.address?.city || ''}</p>
+      <p>State: {profile.user?.address?.state || ''}</p>
+      <p>ZIP: {profile.user?.address?.zip || ''}</p>
+
+      <h2>Member Profile</h2>
+      <p>Nationality: {profile.member?.nationality || ''}</p>
+      <p>Hometown: {profile.member?.hometown || ''}</p>
+      <p>Marital Status: {profile.member?.maritalStatus || ''}</p>
+      <p>Origin: {profile.member?.origin || ''}</p>
+
+      <h3>Employment</h3>
+      <p>Company: {profile.member?.employment?.company || ''}</p>
+      <p>Employment Status: {profile.member?.employment?.employmentStatus || ''}</p>
+      <p>Job Title: {profile.member?.employment?.jobTitle || ''}</p>
+      <p>Work Address: {profile.member?.employment?.workAddress || ''}</p>
+      <p>Work Phone: {profile.member?.employment?.workPhone || ''}</p>
+      <p>Work Email: {profile.member?.employment?.workEmail || ''}</p>
+
+      <h3>Emergency Contact</h3>
+      {profile.member?.emergencyContact?.map((contact, index) => (
+        <div key={index}>
+          <p>Name: {contact.name || ''}</p>
+          <p>Relationship: {contact.relation || ''}</p>
+          <p>Phone: {contact.phone || ''}</p>
+          <p>Email: {contact.email || ''}</p>
+          <h4>Address</h4>
+          <p>Street: {contact.address?.street || ''}</p>
+          <p>Apartment: {contact.address?.apt || ''}</p>
+          <p>City: {contact.address?.city || ''}</p>
+          <p>State: {contact.address?.state || ''}</p>
+          <p>ZIP: {contact.address?.zip || ''}</p>
+        </div>
+      ))}
+
+      <h2>Household Profile</h2>
+      <p>Household ID: {profile.household?._id || ''}</p>
+
+      <h3>Spouse</h3>
+      <p>First Name: {profile.household?.spouse?.firstName || ''}</p>
+      <p>Last Name: {profile.household?.spouse?.lastName || ''}</p>
+      <p>Email: {profile.household?.spouse?.email || ''}</p>
+      <p>Birthdate: {profile.household?.spouse?.birthdate ? new Date(profile.household.spouse.birthdate).toLocaleDateString() : ''}</p>
+      <p>Nationality: {profile.household?.spouse?.nationality || ''}</p>
+      <p>Sex: {profile.household?.spouse?.sex || ''}</p>
+      <h4>Address</h4>
+      <p>Street: {profile.household?.spouse?.address?.street || ''}</p>
+      <p>Apartment: {profile.household?.spouse?.address?.apt || ''}</p>
+      <p>City: {profile.household?.spouse?.address?.city || ''}</p>
+      <p>State: {profile.household?.spouse?.address?.state || ''}</p>
+      <p>ZIP: {profile.household?.spouse?.address?.zip || ''}</p>
+
+      <h3>Children</h3>
+      {profile.household?.children?.map((child, index) => (
+        <div key={index}>
+          <p>First Name: {child.firstName || ''}</p>
+          <p>Last Name: {child.lastName || ''}</p>
+          <p>Email: {child.email || ''}</p>
+          <p>Birthdate: {child.birthdate ? new Date(child.birthdate).toLocaleDateString() : ''}</p>
+          <h4>Address</h4>
+          <p>Street: {child.address?.street || ''}</p>
+          <p>Apartment: {child.address?.apt || ''}</p>
+          <p>City: {child.address?.city || ''}</p>
+          <p>State: {child.address?.state || ''}</p>
+          <p>ZIP: {child.address?.zip || ''}</p>
+        </div>
+      ))}
+
+      <h3>Adult Dependents</h3>
+      {profile.household?.adultDependents?.map((dependent, index) => (
+        <div key={index}>
+          <p>First Name: {dependent.firstName || ''}</p>
+          <p>Last Name: {dependent.lastName || ''}</p>
+          <p>Email: {dependent.email || ''}</p>
+          <p>Birthdate: {dependent.birthdate ? new Date(dependent.birthdate).toLocaleDateString() : ''}</p>
+          <p>Nationality: {dependent.nationality || ''}</p>
+          <p>Sex: {dependent.sex || ''}</p>
+          <h4>Address</h4>
+          <p>Street: {dependent.address?.street || ''}</p>
+          <p>Apartment: {dependent.address?.apt || ''}</p>
+          <p>City: {dependent.address?.city || ''}</p>
+          <p>State: {dependent.address?.state || ''}</p>
+          <p>ZIP: {dependent.address?.zip || ''}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
 export default UserProfile;
+
+
+
+
