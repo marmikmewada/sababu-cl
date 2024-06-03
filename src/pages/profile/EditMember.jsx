@@ -1,11 +1,9 @@
-
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useStore from "../../zustand/store"; // Path to your Zustand store
+import useStore from "../../zustand/store";
 
 const EditMember = () => {
-  const navigate = useNavigate(); // Initialize navigate hook
-
+  const navigate = useNavigate();
   const {
     profile,
     updateUserProfile,
@@ -57,12 +55,14 @@ const EditMember = () => {
         name: "",
         phone: "",
         email: "",
-        apt: "",
-        street: "",
-        city: "",
-        state: "",
-        country: "",
-        zip: "",
+        address: {
+          apt: "",
+          street: "",
+          city: "",
+          state: "",
+          country: "",
+          zip: "",
+        },
       },
     ],
     apt: "",
@@ -74,11 +74,13 @@ const EditMember = () => {
       birthdate: "",
       sex: "",
       nationality: "",
-      street: "",
-      apt: "",
-      city: "",
-      state: "",
-      zip: "",
+      address: {
+        street: "",
+        apt: "",
+        city: "",
+        state: "",
+        zip: "",
+      },
     },
     children: [
       {
@@ -88,11 +90,13 @@ const EditMember = () => {
         birthdate: "",
         sex: "",
         nationality: "",
-        street: "",
-        apt: "",
-        city: "",
-        state: "",
-        zip: "",
+        address: {
+          street: "",
+          apt: "",
+          city: "",
+          state: "",
+          zip: "",
+        },
       },
     ],
     adultDependents: [
@@ -103,11 +107,13 @@ const EditMember = () => {
         birthdate: "",
         sex: "",
         nationality: "",
-        street: "",
-        apt: "",
-        city: "",
-        state: "",
-        zip: "",
+        address: {
+          street: "",
+          apt: "",
+          city: "",
+          state: "",
+          zip: "",
+        },
       },
     ],
   });
@@ -159,12 +165,14 @@ const EditMember = () => {
             name: "",
             phone: "",
             email: "",
-            apt: "",
-            street: "",
-            city: "",
-            state: "",
-            country: "",
-            zip: "",
+            address: {
+              apt: "",
+              street: "",
+              city: "",
+              state: "",
+              country: "",
+              zip: "",
+            },
           },
         ],
         apt: profile.member?.address?.apt || "",
@@ -178,11 +186,13 @@ const EditMember = () => {
             : "",
           sex: profile.household?.spouse?.sex || "",
           nationality: profile.household?.spouse?.nationality || "",
-          street: profile.household?.spouse?.address?.street || "",
-          apt: profile.household?.spouse?.address?.apt || "",
-          city: profile.household?.spouse?.address?.city || "",
-          state: profile.household?.spouse?.address?.state || "",
-          zip: profile.household?.spouse?.address?.zip || "",
+          address: {
+            street: profile.household?.spouse?.address?.street || "",
+            apt: profile.household?.spouse?.address?.apt || "",
+            city: profile.household?.spouse?.address?.city || "",
+            state: profile.household?.spouse?.address?.state || "",
+            zip: profile.household?.spouse?.address?.zip || "",
+          },
         },
         children: profile.household?.children || [
           {
@@ -192,11 +202,13 @@ const EditMember = () => {
             birthdate: "",
             sex: "",
             nationality: "",
-            street: "",
-            apt: "",
-            city: "",
-            state: "",
-            zip: "",
+            address: {
+              street: "",
+              apt: "",
+              city: "",
+              state: "",
+              zip: "",
+            },
           },
         ],
         adultDependents: profile.household?.adultDependents || [
@@ -207,11 +219,13 @@ const EditMember = () => {
             birthdate: "",
             sex: "",
             nationality: "",
-            street: "",
-            apt: "",
-            city: "",
-            state: "",
-            zip: "",
+            address: {
+              street: "",
+              apt: "",
+              city: "",
+              state: "",
+              zip: "",
+            },
           },
         ],
       });
@@ -242,6 +256,20 @@ const EditMember = () => {
           },
         },
       }));
+    } else if (keys.length === 4) {
+      setFormData((prevState) => ({
+        ...prevState,
+        [keys[0]]: {
+          ...prevState[keys[0]],
+          [keys[1]]: {
+            ...prevState[keys[0]][keys[1]],
+            [keys[2]]: {
+              ...prevState[keys[0]][keys[1]][keys[2]],
+              [keys[3]]: value,
+            },
+          },
+        },
+      }));
     } else {
       setFormData((prevState) => ({
         ...prevState,
@@ -249,12 +277,10 @@ const EditMember = () => {
       }));
     }
   };
-  
 
   const handleNestedChange = (e, index, key) => {
     const { name, value } = e.target;
     const nestedKey = name.split(".").pop();
-
     setFormData((prevState) => {
       const updatedArray = [...prevState[key]];
       updatedArray[index] = {
@@ -279,12 +305,14 @@ const EditMember = () => {
               name: "",
               phone: "",
               email: "",
-              apt: "",
-              street: "",
-              city: "",
-              state: "",
-              country: "",
-              zip: "",
+              address: {
+                apt: "",
+                street: "",
+                city: "",
+                state: "",
+                country: "",
+                zip: "",
+              },
             }
           : {
               firstName: "",
@@ -293,11 +321,13 @@ const EditMember = () => {
               birthdate: "",
               sex: "",
               nationality: "",
-              street: "",
-              apt: "",
-              city: "",
-              state: "",
-              zip: "",
+              address: {
+                street: "",
+                apt: "",
+                city: "",
+                state: "",
+                zip: "",
+              },
             },
       ],
     }));
