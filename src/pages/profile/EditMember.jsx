@@ -216,51 +216,33 @@ const EditMember = () => {
         ],
       });
     } else {
-      // Fetch user profile if not already loaded
       fetchUserProfile();
     }
   }, [profile, fetchUserProfile]);
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   const [mainKey, subKey] = name.split(".");
-
-  //   if (subKey) {
-  //     setFormData((prevState) => ({
-  //       ...prevState,
-  //       [mainKey]: {
-  //         ...prevState[mainKey],
-  //         [subKey]: value,
-  //       },
-  //     }));
-  //   } else {
-  //     setFormData((prevState) => ({
-  //       ...prevState,
-  //       [name]: value,
-  //     }));
-  //   }
-  // };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const [mainKey, subKey] = name.split(".");
-  
-    if (mainKey === 'spouse') {
-      // Handle nested changes for spouse
-      const updatedFormData = { ...formData };
-      if (subKey) {
-        // Update a nested field under spouse
-        if (updatedFormData.spouse[subKey] === undefined) {
-          updatedFormData.spouse[subKey] = {};
-        }
-        updatedFormData.spouse[subKey] = value;
-      } else {
-        // Update the entire spouse object
-        updatedFormData.spouse = value;
-      }
-      setFormData(updatedFormData);
+    const keys = name.split(".");
+    if (keys.length === 2) {
+      setFormData((prevState) => ({
+        ...prevState,
+        [keys[0]]: {
+          ...prevState[keys[0]],
+          [keys[1]]: value,
+        },
+      }));
+    } else if (keys.length === 3) {
+      setFormData((prevState) => ({
+        ...prevState,
+        [keys[0]]: {
+          ...prevState[keys[0]],
+          [keys[1]]: {
+            ...prevState[keys[0]][keys[1]],
+            [keys[2]]: value,
+          },
+        },
+      }));
     } else {
-      // Handle normal changes for other fields
       setFormData((prevState) => ({
         ...prevState,
         [name]: value,
