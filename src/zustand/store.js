@@ -1,6 +1,6 @@
 import create from 'zustand';
 
-const BACK_URL = 'http://localhost:3000';
+const BACK_URL = 'https://sababu-copy.vercel.app/';
 
 const useStore = create((set) => ({
   isLoading: false,
@@ -17,7 +17,7 @@ const useStore = create((set) => ({
   membershipStatus: null,
 
   // Set user data and authentication token
-  setUser: (userData, authToken) =>
+  setUser: (userData, authToken) => 
     set((state) => ({
       user: userData,
       token: authToken,
@@ -331,6 +331,52 @@ const useStore = create((set) => ({
       throw error;
     }
   },
+  createContact: async (name, phone, email, message) => {
+    set({ isLoading: true });
+    try {
+      const response = await fetch(`${BACK_URL}/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, phone, email, message }),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to create contact');
+      }
+      const data = await response.json();
+      console.log(data);
+      set({ isLoading: false });
+    } catch (error) {
+      console.error('Error creating contact:', error);
+      set({ isLoading: false });
+    }
+  },
+  // Function to subscribe to the newsletter
+createNewsletter: async (email) => {
+  set({ isLoading: true });
+  try {
+    const response = await fetch(`${BACK_URL}/newsletter`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    });
+    if (!response.ok) {
+      throw new Error('Failed to subscribe to newsletter');
+    }
+    const data = await response.json();
+    console.log(data);
+    set({ isLoading: false });
+  } catch (error) {
+    console.error('Error subscribing to newsletter:', error);
+    set({ isLoading: false });
+  }
+},
+
+
+
 }));
 
 // Initialize the store on app start

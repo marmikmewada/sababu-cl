@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Import Link and useNavigate for navigation
 import useStore from '../../zustand/store'; // Path to your Zustand store
+import AppNav from '../../components/AppNav';
 
 const EditUser = () => {
   const navigate = useNavigate(); // Initialize navigate hook
@@ -90,78 +91,76 @@ const EditUser = () => {
   };
 
   return (
-    <div>
-      <h2>Edit User Profile</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          First Name:
-          <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Middle Name:
-          <input type="text" name="middleName" value={formData.middleName} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Last Name:
-          <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Email:
-          <input type="email" name="email" value={formData.email} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Phone:
-          <input type="tel" name="phone" value={formData.phone} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Gender:
-          <select name="gender" value={formData.gender} onChange={handleChange}>
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
-        </label>
-        <br />
-        <label>
-          Date of Birth:
-          <input type="date" name="dob" value={formData.dob} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Street:
-          <input type="text" name="street" value={formData.street} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          City:
-          <input type="text" name="city" value={formData.city} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          State:
-          <input type="text" name="state" value={formData.state} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Zip:
-          <input type="text" name="zip" value={formData.zip} onChange={handleChange} />
-        </label>
-        <br />
-        <button type="submit">Submit</button>
-      </form>
-      <Link to="/app/profile">Back to Profile</Link> {/* Example link to navigate back */}
-      
-      {updateSuccess && (
-        <div style={{ backgroundColor: 'lightgreen', padding: '10px', marginTop: '10px' }}>
-          Profile updated successfully!
-        </div>
-      )}
+    <div className="min-h-screen bg-gray-100">
+      <AppNav />
+      <div className="container mx-auto p-6">
+        <h2 className="text-2xl font-bold mb-6">Edit User Profile</h2>
+        <form className="bg-white p-6 rounded-lg shadow-md" onSubmit={handleSubmit}>
+          {['firstName', 'middleName', 'lastName', 'email', 'phone', 'street', 'city', 'state', 'zip'].map((field) => (
+            <div className="mb-4" key={field}>
+              <label className="block text-gray-700 text-sm font-bold mb-2 capitalize" htmlFor={field}>
+                {field.split(/(?=[A-Z])/).join(' ')}:
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id={field}
+                type={field === 'email' ? 'email' : 'text'}
+                name={field}
+                value={formData[field]}
+                onChange={handleChange}
+              />
+            </div>
+          ))}
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="gender">
+              Gender:
+            </label>
+            <select
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="gender"
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+            >
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div className="mb-4">
+            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="dob">
+              Date of Birth:
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="dob"
+              type="date"
+              name="dob"
+              value={formData.dob}
+              onChange={handleChange}
+            />
+          </div>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="submit"
+          >
+            Submit
+          </button>
+        </form>
+        <Link
+          to="/app/profile"
+          className="block mt-4 text-blue-500 hover:text-blue-700 font-bold"
+        >
+          Back to Profile
+        </Link>
+        {updateSuccess && (
+          <div className="mt-4 bg-green-100 border-t border-b border-green-500 text-green-700 px-4 py-3" role="alert">
+            <p className="font-bold">Success</p>
+            <p className="text-sm">Profile updated successfully!</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

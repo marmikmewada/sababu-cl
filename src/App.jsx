@@ -11,6 +11,7 @@ import Login from './pages/authentication/Login';
 import useStore from './zustand/store'; // Adjust the import path as necessary
 import EditUser from './pages/profile/EditUser';
 import EditMember from './pages/profile/EditMember';
+import EditHousehold from './pages/profile/EditHousehold';
 // import EditProfile from './pages/profile/EditProfile';
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
         {/* <Route path="/app/user/edit" element={<EditProfile />} /> */}
         <Route path="/app/user/edit" element={<EditUser/>} />
         <Route path="/app/member/edit" element={<EditMember/>} />
-
+        <Route path="/app/household/edit" element={<EditHousehold/>}/>
 
       </Routes>
     </>
