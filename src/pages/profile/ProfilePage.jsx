@@ -104,9 +104,9 @@ const UserProfile = () => {
       {/* <Link to="/app/user/edit">Edit Profile</Link> */}
 
       {membershipStatus === 'none' && (
-        <div className="mt-4">
+        <div className="p-6 bg-gray-100 min-h-auto flex flex-col items-center">
           <label htmlFor="membershipType" className="mr-2 font-bold">Select Membership Type:</label>
-          <select id="membershipType" value={selectedMembershipType} onChange={handleDropdownChange} className="mr-2">
+          <select id="membershipType" value={selectedMembershipType} onChange={handleDropdownChange} className="mr-2 flex-col items-center">
             <option value="">-- Select Membership Type --</option>
             <option value="single">Single</option>
             <option value="singlefamily">Single Family</option>
@@ -164,7 +164,7 @@ const renderProfile = (profile, membershipStatus) => {
 
   if (membershipStatus === 'none' || membershipStatus === 'applied') {
     return (
-      <div className="p-6 bg-gray-100 min-h-screen flex flex-col items-center">
+      <div className="p-6 bg-gray-100 min-h-auto flex flex-col items-center">
         <div className="max-w-7xl w-full">
           <h2 className="text-4xl font-bold mb-12 text-blue-900 text-center">Basic User Profile</h2>
           <div className="mb-12 bg-white shadow-lg rounded-lg p-8">
