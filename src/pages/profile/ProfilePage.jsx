@@ -149,15 +149,34 @@ const renderProfile = (profile, membershipStatus) => {
       <p key={key} className="text-lg mb-2"><span className="font-semibold">{key}:</span> {fields[key] || 'N/A'}</p>
     ));
   };
+  // if (membershipStatus === 'none' || membershipStatus === 'applied') {
+  //   return (
+  //     <div>
+  //       {/* adding navbar to non and applied  */}
+  //       {/* <AppNav/> */}
+
+  //       <h2>Basic User Profile</h2>
+  //       {renderFields(profileFields)}
+  //       <Link to="/app/user/edit">Edit Profile</Link>
+  //     </div>
+  //   );
+  // }
+
   if (membershipStatus === 'none' || membershipStatus === 'applied') {
     return (
-      <div>
-        {/* adding navbar to non and applied  */}
-        {/* <AppNav/> */}
-
-        <h2>Basic User Profile</h2>
-        {renderFields(profileFields)}
-        <Link to="/app/user/edit">Edit Profile</Link>
+      <div className="p-6 bg-gray-100 min-h-screen flex flex-col items-center">
+        <div className="max-w-7xl w-full">
+          <h2 className="text-4xl font-bold mb-12 text-blue-900 text-center">Basic User Profile</h2>
+          <div className="mb-12 bg-white shadow-lg rounded-lg p-8">
+            {renderFields(profileFields)}
+            <Link
+              to="/app/user/edit"
+              className="text-pink-600 hover:underline block text-center mt-6 text-lg"
+            >
+              Edit Profile
+            </Link>
+          </div>
+        </div>
       </div>
     );
   }
