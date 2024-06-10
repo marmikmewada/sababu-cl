@@ -1,6 +1,6 @@
 import create from 'zustand';
 
-const BACK_URL = 'https://sababu-copy.vercel.app/';
+const BACK_URL = 'https://sababu-copy.vercel.app';
 
 const useStore = create((set) => ({
   isLoading: false,
