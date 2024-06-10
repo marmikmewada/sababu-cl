@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import useStore from "../../zustand/store";
 import { useNavigate } from "react-router-dom";
 import AppNav from "../../components/AppNav";
+import { Link } from "react-router-dom";
 
 const EditMember = () => {
   const navigate = useNavigate();
@@ -437,6 +438,12 @@ const EditMember = () => {
       Save Changes
     </button>
   </form>
+  <Link
+          to="/app/profile"
+          className="block mt-4 text-blue-500 hover:text-blue-700 font-bold"
+        >
+          Back to Profile
+        </Link>
   </div>
     
     );
