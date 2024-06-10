@@ -93,8 +93,9 @@ const UserProfile = () => {
       {/* <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded mr-1" onClick={handleSignOut}>Sign Out</button>
       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-4 rounded mr-1" onClick={handleHome}>Home</button> */}
 
+      {/* changed from top-0  to bottom-0 below  */}
       {showPopup && (
-        <div className="fixed top-0 left-0 right-0 bg-gray-800 text-white p-4 flex justify-between items-center">
+        <div className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4 flex justify-between items-center">
           <span>{getPopupMessage()}</span>
           <button onClick={() => setShowPopup(false)} className="text-white ml-4">Close</button>
         </div>
@@ -137,17 +138,22 @@ const renderProfile = (profile, membershipStatus) => {
     "ZIP": profile.user?.address?.zip
   };
 
+  // const renderFields = (fields) => {
+  //   return Object.keys(fields).map((key) => (
+  //     <p className="text-lg mb-2" key={key}>{key}: {fields[key] || ''}</p>
+  //   ));
+  // };
+
   const renderFields = (fields) => {
     return Object.keys(fields).map((key) => (
-      <p key={key}>{key}: {fields[key] || ''}</p>
+      <p key={key} className="text-lg mb-2"><span className="font-semibold">{key}:</span> {fields[key] || 'N/A'}</p>
     ));
   };
-
   if (membershipStatus === 'none' || membershipStatus === 'applied') {
     return (
       <div>
         {/* adding navbar to non and applied  */}
-        <AppNav/>
+        {/* <AppNav/> */}
 
         <h2>Basic User Profile</h2>
         {renderFields(profileFields)}
